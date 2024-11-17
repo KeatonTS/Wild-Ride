@@ -10,11 +10,13 @@ friction = 0.25
 size = Vector2(36, 84)
 
 [node name="Car" type="RigidBody2D"]
+mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_2jgkv")
 gravity_scale = 0.0
 can_sleep = false
 constant_force = Vector2(0, -50)
 script = ExtResource("1_yj8cy")
+speed = -600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_snysf")
