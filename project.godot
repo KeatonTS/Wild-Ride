@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="Wild_Ride"
-config/features=PackedStringArray("4.1", "Mobile")
+run/main_scene="res://Scenes/test.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [rendering]
 

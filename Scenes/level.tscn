@@ -1,3 +1,74 @@
-[gd_scene format=3 uid="uid://b0cnl60fj36r4"]
+[gd_scene load_steps=7 format=4 uid="uid://b0cnl60fj36r4"]
+
+[ext_resource type="PackedScene" uid="uid://dhin1fsbhy8cx" path="res://Scenes/rope.tscn" id="2_xc28b"]
+[ext_resource type="Texture2D" uid="uid://b70e6c33dwhc5" path="res://Graphics/Grass/roads2W.png" id="3_5n045"]
+[ext_resource type="Texture2D" uid="uid://33ogibnxxfgw" path="res://icon.svg" id="3_mojm3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cycr"]
+texture = ExtResource("3_5n045")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+6:1/0 = 0
+5:1/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jxdtl"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_1cycr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8l8w"]
+size = Vector2(331, 30)
 
 [node name="Level" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-2306.0]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(137, 360)
+zoom = Vector2(3, 3)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAGAA0AAAADAAAAAAAGAA4AAAADAAAAAAAGAA8AAAADAAAAAAAGABAAAAADAAAAAAAGABEAAAADAAAAAAAGABIAAAADAAAAAAAGABMAAAADAAAAAAAGABQAAAADAAAAAAAGABUAAAADAAAAAAAGABYAAAADAAAAAAAGABcAAAADAAAAAAAGABgAAAADAAAAAAAGABkAAAADAAAAAAAGABoAAAADAAAAAAAGABsAAAADAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAADAAAAAAAAAAIAAAADAAAAAAAAAAMAAAAHAAEAAAABAAAAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAMAAAACAAAAAAADAAAAAAACAAAAAAADAAMAAAAAAAAAAAAEAAAAAAACAAAAAAAEAAMAAAABAAAAAAAFAAAAAAACAAAAAAAFAAMAAAACAAAAAAAGAAAAAAABAAEAAAAGAAEAAAADAAAAAAAGAAIAAAADAAAAAAAGAAMAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_jxdtl")
+
+[node name="Rope" parent="." instance=ExtResource("2_xc28b")]
+position = Vector2(123, 270)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(6, 389)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-6, -16)
+scale = Vector2(2.54687, 0.195313)
+texture = ExtResource("3_mojm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6.5, -16)
+shape = SubResource("RectangleShape2D_g8l8w")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(320, 466)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(-6, -16)
+scale = Vector2(2.54687, 0.195313)
+texture = ExtResource("3_mojm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-6.5, -16)
+shape = SubResource("RectangleShape2D_g8l8w")
