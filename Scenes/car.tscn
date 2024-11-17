@@ -10,7 +10,11 @@ friction = 0.25
 size = Vector2(36, 84)
 
 [node name="Car" type="RigidBody2D"]
+<<<<<<< Updated upstream
 mass = 2.0
+=======
+mass = 10.0
+>>>>>>> Stashed changes
 physics_material_override = SubResource("PhysicsMaterial_2jgkv")
 gravity_scale = 0.0
 can_sleep = false
