@@ -5,7 +5,7 @@ const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 var jumped = false
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _physics_process(_delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
