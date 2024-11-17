@@ -2,7 +2,7 @@ extends RigidBody2D
 
 signal landed
 var jumped = false
-@export var speed : float = -400  # Max forward speed
+@export var speed : float = -800  # Max forward speed
 @export var turn_speed : float = 4.0  # How fast the car can rotate
 @export var max_speed : float = -800  # Max speed
 @export var speed_step : float = 0.1  # Rate at which the car slows down when not moving
@@ -12,6 +12,7 @@ var is_driving = true
 
 # Process function to handle inputs and movement every frame
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	rotation = clamp(rotation, -90, 90)
 	if is_driving:
 
 		if Input.is_action_pressed("ui_right"):
@@ -39,7 +40,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("drive") and not is_driving:
 		is_driving = true
 	
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("car_jump"):
 		var jump_tween = create_tween()
 		jump_tween.tween_property($Sprite2D, "scale", Vector2(2, 2), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		jumped = true

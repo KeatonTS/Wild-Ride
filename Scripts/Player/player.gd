@@ -1,24 +1,24 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 signal landed
-const SPEED = 200.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 var jumped = false
 
-func _physics_process(delta: float) -> void:
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	state.linear_velocity = transform.y * SPEED
+	
+	var direction := Input.get_axis("player_left", "player_right")
 	if direction:
-		velocity.x = direction * SPEED
+		state.linear_velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, 5)
-
-	move_and_slide()
+		state.linear_velocity.x = move_toward(state.linear_velocity.x, 0, 5)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("stop-start"):
+	if event.is_action_pressed("player_jump"):
 		var jump_tween = create_tween()
 		jump_tween.tween_property(self, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		jumped = true

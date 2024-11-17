@@ -1,0 +1,417 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf01w8xfvuvt7"]
+
+[ext_resource type="Texture2D" uid="uid://dpi6grfkcck4q" path="res://Graphics/Chain/chain_link2.png" id="1_6dgpk"]
+[ext_resource type="Texture2D" uid="uid://s5k1ah2bp8vr" path="res://Graphics/Chain/chain_link1.png" id="2_ulihe"]
+
+[sub_resource type="GDScript" id="GDScript_43gxf"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	#$RopeSegment1.position = get_local_mouse_position()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3opl"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1eav8"]
+size = Vector2(4, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm1tr"]
+size = Vector2(4.23157, 13)
+
+[node name="Rope" type="Node2D"]
+script = SubResource("GDScript_43gxf")
+
+[node name="RopeSegment1" type="RigidBody2D" parent="."]
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment1"]
+shape = SubResource("RectangleShape2D_v3opl")
+
+[node name="Sprite2D" type="Sprite2D" parent="RopeSegment1"]
+texture_filter = 1
+position = Vector2(1.77636e-15, 5.96046e-08)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment1"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment2")
+softness = 16.0
+
+[node name="RopeSegment2" type="RigidBody2D" parent="."]
+position = Vector2(-0.0587692, 12.8081)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment2"]
+shape = SubResource("RectangleShape2D_1eav8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RopeSegment2"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment2"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment3")
+softness = 16.0
+
+[node name="RopeSegment3" type="RigidBody2D" parent="."]
+position = Vector2(0.231569, 26.8907)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment3"]
+position = Vector2(-0.115785, -1)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment3"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-0.418858, -1.03114)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment3"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment4")
+softness = 16.0
+
+[node name="RopeSegment4" type="RigidBody2D" parent="."]
+position = Vector2(-0.125, 39.1875)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment4"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment4"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-0.1, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment4"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment5")
+softness = 16.0
+
+[node name="RopeSegment5" type="RigidBody2D" parent="."]
+position = Vector2(-0.455364, 51.0963)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment5"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment5"]
+texture_filter = 1
+position = Vector2(0.389149, 0.903709)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment5"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment6")
+softness = 16.0
+
+[node name="RopeSegment6" type="RigidBody2D" parent="."]
+position = Vector2(0.0278587, 65.3936)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment6"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment6"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-0.0278587, -0.533875)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment6"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment7")
+softness = 16.0
+
+[node name="RopeSegment7" type="RigidBody2D" parent="."]
+position = Vector2(-0.0359764, 77.9124)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment7"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment7"]
+texture_filter = 1
+position = Vector2(-0.0632362, -0.0115662)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment7"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment8")
+softness = 16.0
+
+[node name="RopeSegment8" type="RigidBody2D" parent="."]
+position = Vector2(-0.0359726, 90.1077)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment8"]
+z_index = 1
+texture_filter = 1
+position = Vector2(0.0855789, -0.00843811)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment8"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment8"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment9")
+softness = 16.0
+
+[node name="RopeSegment9" type="RigidBody2D" parent="."]
+position = Vector2(-0.0254555, 102.645)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment9"]
+texture_filter = 1
+position = Vector2(-0.0241508, 0.304962)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment9"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment9"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment10")
+softness = 16.0
+
+[node name="RopeSegment10" type="RigidBody2D" parent="."]
+position = Vector2(0.101212, 116.146)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D4" type="Sprite2D" parent="RopeSegment10"]
+texture_filter = 1
+position = Vector2(-0.179956, -0.185364)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment10"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment10"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment11")
+softness = 16.0
+
+[node name="RopeSegment11" type="RigidBody2D" parent="."]
+position = Vector2(0, 130)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment11"]
+shape = SubResource("RectangleShape2D_v3opl")
+
+[node name="Sprite2D" type="Sprite2D" parent="RopeSegment11"]
+texture_filter = 1
+position = Vector2(1.77636e-15, 5.96046e-08)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment11"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment12")
+softness = 16.0
+
+[node name="RopeSegment12" type="RigidBody2D" parent="."]
+position = Vector2(-0.0587692, 142.808)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment12"]
+shape = SubResource("RectangleShape2D_1eav8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RopeSegment12"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment12"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment13")
+softness = 16.0
+
+[node name="RopeSegment13" type="RigidBody2D" parent="."]
+position = Vector2(0.231569, 156.891)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment13"]
+position = Vector2(-0.115785, -1)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment13"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-0.418858, -1.03114)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment13"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment14")
+softness = 16.0
+
+[node name="RopeSegment14" type="RigidBody2D" parent="."]
+position = Vector2(-0.125, 169.188)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment14"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment14"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-0.1, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment14"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment15")
+softness = 16.0
+
+[node name="RopeSegment15" type="RigidBody2D" parent="."]
+position = Vector2(-0.455364, 181.096)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment15"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment15"]
+texture_filter = 1
+position = Vector2(0.389149, 0.903709)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment15"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment16")
+softness = 16.0
+
+[node name="RopeSegment16" type="RigidBody2D" parent="."]
+position = Vector2(0.0278587, 195.394)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment16"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment16"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-0.0278587, -0.533875)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment16"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment17")
+softness = 16.0
+
+[node name="RopeSegment17" type="RigidBody2D" parent="."]
+position = Vector2(-0.0359764, 207.912)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment17"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment17"]
+texture_filter = 1
+position = Vector2(-0.0632362, -0.0115662)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment17"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment18")
+softness = 16.0
+
+[node name="RopeSegment18" type="RigidBody2D" parent="."]
+position = Vector2(-0.0359726, 220.108)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment18"]
+z_index = 1
+texture_filter = 1
+position = Vector2(0.0855789, -0.00843811)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment18"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment18"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment19")
+softness = 16.0
+
+[node name="RopeSegment19" type="RigidBody2D" parent="."]
+position = Vector2(-0.0254555, 232.645)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="RopeSegment19"]
+texture_filter = 1
+position = Vector2(-0.0241508, 0.304962)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6dgpk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment19"]
+shape = SubResource("RectangleShape2D_vm1tr")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RopeSegment19"]
+node_a = NodePath("..")
+node_b = NodePath("../../RopeSegment20")
+softness = 16.0
+
+[node name="RopeSegment20" type="RigidBody2D" parent="."]
+position = Vector2(0.101212, 246.146)
+mass = 0.5
+gravity_scale = 0.0
+
+[node name="Sprite2D4" type="Sprite2D" parent="RopeSegment20"]
+texture_filter = 1
+position = Vector2(-0.179956, -0.185364)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulihe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSegment20"]
+shape = SubResource("RectangleShape2D_vm1tr")
