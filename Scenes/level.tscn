@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://b0cnl60fj36r4"]
+[gd_scene load_steps=6 format=4 uid="uid://b0cnl60fj36r4"]
 
-[ext_resource type="PackedScene" uid="uid://dhin1fsbhy8cx" path="res://Scenes/rope.tscn" id="2_xc28b"]
-[ext_resource type="Texture2D" uid="uid://b70e6c33dwhc5" path="res://Graphics/Grass/roads2W.png" id="3_5n045"]
+[ext_resource type="PackedScene" uid="uid://cf01w8xfvuvt7" path="res://Scenes/rope.tscn" id="2_xc28b"]
 [ext_resource type="Texture2D" uid="uid://33ogibnxxfgw" path="res://icon.svg" id="3_mojm3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cycr"]
-texture = ExtResource("3_5n045")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -43,7 +41,7 @@ zoom = Vector2(3, 3)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAGAA0AAAADAAAAAAAGAA4AAAADAAAAAAAGAA8AAAADAAAAAAAGABAAAAADAAAAAAAGABEAAAADAAAAAAAGABIAAAADAAAAAAAGABMAAAADAAAAAAAGABQAAAADAAAAAAAGABUAAAADAAAAAAAGABYAAAADAAAAAAAGABcAAAADAAAAAAAGABgAAAADAAAAAAAGABkAAAADAAAAAAAGABoAAAADAAAAAAAGABsAAAADAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAADAAAAAAAAAAIAAAADAAAAAAAAAAMAAAAHAAEAAAABAAAAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAMAAAACAAAAAAADAAAAAAACAAAAAAADAAMAAAAAAAAAAAAEAAAAAAACAAAAAAAEAAMAAAABAAAAAAAFAAAAAAACAAAAAAAFAAMAAAACAAAAAAAGAAAAAAABAAEAAAAGAAEAAAADAAAAAAAGAAIAAAADAAAAAAAGAAMAAAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAAGAA0AAAADAAAAAAAGAA4AAAADAAAAAAAGAA8AAAADAAAAAAAGABAAAAADAAAAAAAGABEAAAADAAAAAAAGABIAAAADAAAAAAAGABMAAAADAAAAAAAGABQAAAADAAAAAAAGABUAAAADAAAAAAAGABYAAAADAAAAAAAGABcAAAADAAAAAAAGABgAAAADAAAAAAAGABkAAAADAAAAAAAGABoAAAADAAAAAAAGABsAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_jxdtl")
 
 [node name="Rope" parent="." instance=ExtResource("2_xc28b")]
