@@ -10,10 +10,16 @@ var can_turn : bool = false  # Can the car turn
 var current_speed : float = 50 # Current speed of the car
 var is_driving = true
 
-# Process function to handle inputs and movement every frame
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if is_driving:
+func _physics_process(_delta: float) -> void:
+	if $Front.is_colliding():
+		linear_velocity = Vector2(0,0)
+		#_auto_steer()  # Turn the car if stopped
+		$Front.enabled = false
+		return
+	else:
+		current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
 
+	if is_driving:
 		if Input.is_action_pressed("ui_right"):
 			rotation += 0.05
 		elif Input.is_action_pressed("ui_left"):
@@ -22,15 +28,51 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
 
 		# Update the speed and apply it
-		state.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
+		self.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
 
 		# Handle turning input when moving
 		if can_turn:
 			var turn_input = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
 			rotation += turn_input * turn_speed
 	else:
-		state.linear_velocity = Vector2.ZERO
-		current_speed = lerp(current_speed, 0.0, speed_step)
+		self.linear_velocity = Vector2.ZERO
+
+# Function to handle automatic steering when the car is stopped
+func _auto_steer():
+	# If the car has stopped, check left and right raycasts to steer automatically
+	if !$Left.is_colliding() and $Right.is_colliding():
+		$Left.enabled = false
+		$Right.enabled = false
+		# No road on the left, so turn right
+		rotation += 90  # Small turn to the right
+	elif !$Right.is_colliding() and $Left.is_colliding():
+		# No road on the right, so turn left
+		$Left.enabled = false
+		$Right.enabled = false
+		rotation -= 90  # Small turn to the left
+	else:
+		# If both sides are clear or neither is clear, do nothing or continue idling
+		pass
+
+# Process function to handle inputs and movement every frame
+#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	#if is_driving:
+		#if Input.is_action_pressed("ui_right"):
+			#rotation += 0.05
+		#elif Input.is_action_pressed("ui_left"):
+			#rotation -= 0.05
+		#else:
+			#current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
+#
+		## Update the speed and apply it
+		#state.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
+#
+		## Handle turning input when moving
+		#if can_turn:
+			#var turn_input = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
+			#rotation += turn_input * turn_speed
+	#else:
+		#state.linear_velocity = Vector2.ZERO
 
 
 func _input(event: InputEvent) -> void:
@@ -41,10 +83,10 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("jump"):
 		var jump_tween = create_tween()
-		jump_tween.tween_property($Sprite2D, "scale", Vector2(2, 2), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		jump_tween.tween_property($Sprite2D, "scale", Vector2(3, 3), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		jumped = true
 		await jump_tween.finished
 		jump_tween = create_tween()
-		jump_tween.tween_property($Sprite2D, "scale", Vector2(1, 1), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		jump_tween.tween_property($Sprite2D, "scale", Vector2(2.5, 2.5), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		await jump_tween.finished
 		landed.emit()

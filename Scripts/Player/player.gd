@@ -5,7 +5,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 var jumped = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("stop-start"):
+	if event.is_action_pressed("jump"):
 		var jump_tween = create_tween()
 		jump_tween.tween_property(self, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		jumped = true
