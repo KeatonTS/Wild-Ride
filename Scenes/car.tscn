@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://dn4jgcdssx24i"]
+[gd_scene load_steps=4 format=3 uid="uid://dn4jgcdssx24i"]
 
-[node name="Car" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/Car/car.gd" id="1_3teu6"]
+[ext_resource type="Texture2D" uid="uid://dl4ub7g1ou4is" path="res://Graphics/Car/Car grey/Car grey.png" id="2_kbd4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wj3hm"]
+size = Vector2(44, 94)
+
+[node name="Car" type="RigidBody2D"]
+script = ExtResource("1_3teu6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_kbd4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wj3hm")
+
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(16.086, 0.0537643)
+target_position = Vector2(173.914, -13.0538)
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-21.7971, -0.788078)
+target_position = Vector2(-170.203, -12.2119)
+
+[node name="Front" type="RayCast2D" parent="."]
+position = Vector2(-0.189743, -36.1456)
+target_position = Vector2(0.189743, -204.854)
