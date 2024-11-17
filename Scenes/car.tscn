@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://dn4jgcdssx24i"]
+[gd_scene load_steps=5 format=3 uid="uid://dn4jgcdssx24i"]
 
-[node name="Car" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/Car/car.gd" id="1_yj8cy"]
+[ext_resource type="Texture2D" uid="uid://33ogibnxxfgw" path="res://icon.svg" id="2_snysf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2jgkv"]
+friction = 0.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbxho"]
+size = Vector2(36, 84)
+
+[node name="Car" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_2jgkv")
+gravity_scale = 0.0
+can_sleep = false
+constant_force = Vector2(0, -50)
+script = ExtResource("1_yj8cy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_snysf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qbxho")
