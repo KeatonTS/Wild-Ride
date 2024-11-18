@@ -10,33 +10,6 @@ var can_turn : bool = false  # Can the car turn
 var current_speed : float = 50 # Current speed of the car
 var is_driving = true
 
-func _physics_process(_delta: float) -> void:
-	if $Front.is_colliding():
-		linear_velocity = Vector2(0,0)
-		#_auto_steer()  # Turn the car if stopped
-		$Front.enabled = false
-		return
-	else:
-		current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
-
-	if is_driving:
-		if Input.is_action_pressed("ui_right"):
-			rotation += 0.05
-		elif Input.is_action_pressed("ui_left"):
-			rotation -= 0.05
-		else:
-			current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
-
-		# Update the speed and apply it
-		self.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
-
-		# Handle turning input when moving
-		if can_turn:
-			var turn_input = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
-			rotation += turn_input * turn_speed
-	else:
-		self.linear_velocity = Vector2.ZERO
-
 # Function to handle automatic steering when the car is stopped
 func _auto_steer():
 	# If the car has stopped, check left and right raycasts to steer automatically
@@ -55,24 +28,24 @@ func _auto_steer():
 		pass
 
 # Process function to handle inputs and movement every frame
-#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#if is_driving:
-		#if Input.is_action_pressed("ui_right"):
-			#rotation += 0.05
-		#elif Input.is_action_pressed("ui_left"):
-			#rotation -= 0.05
-		#else:
-			#current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
-#
-		## Update the speed and apply it
-		#state.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
-#
-		## Handle turning input when moving
-		#if can_turn:
-			#var turn_input = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
-			#rotation += turn_input * turn_speed
-	#else:
-		#state.linear_velocity = Vector2.ZERO
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if is_driving:
+		if Input.is_action_pressed("ui_right"):
+			rotation += 0.05
+		elif Input.is_action_pressed("ui_left"):
+			rotation -= 0.05
+		else:
+			current_speed = lerp(current_speed, speed, speed_step) #Acceleration speed
+
+		# Update the speed and apply it
+		state.linear_velocity = transform.y * current_speed  # Move in the direction of the forward axis
+
+		# Handle turning input when moving
+		if can_turn:
+			var turn_input = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
+			rotation += turn_input * turn_speed
+	else:
+		state.linear_velocity = Vector2.ZERO
 
 
 func _input(event: InputEvent) -> void:

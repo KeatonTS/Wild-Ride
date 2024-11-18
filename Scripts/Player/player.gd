@@ -27,5 +27,17 @@ func _input(event: InputEvent) -> void:
 		await jump_tween.finished
 		landed.emit()
 
+
 func _on_landed() -> void:
 	jumped = false
+
+func _on_area_2d_body_entered(body) -> void:
+	if body.is_in_group("Destructable"):
+		body.destroy()
+		$"../SFX/Hit".play()
+		$"..".score += 1
+		var hit_tween = create_tween()
+		hit_tween.tween_property($Bat, "rotation", 0, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		await hit_tween.finished
+		hit_tween = create_tween()
+		hit_tween.tween_property($Bat, "rotation", -28.5, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

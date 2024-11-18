@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbi6wgwnoo38d"]
+
+[ext_resource type="FontFile" uid="uid://dwri44678816h" path="res://fonts/PressStart2P-Regular.ttf" id="2_s2qme"]
+
+[sub_resource type="Shader" id="Shader_yl1is"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0);
+uniform float opacity: hint_range(0.0, 1.0, 0.1) = 0.5;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = mix(color.rgb, flash_color.rgb, opacity);
+	COLOR = color;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1laq"]
+shader = SubResource("Shader_yl1is")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/opacity = 0.0
+
+[node name="Mailboxes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y1laq")
+layout_mode = 0
+offset_top = 1.0
+offset_right = 64.0
+offset_bottom = 65.0
+scale = Vector2(0.8, 0.8)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 37.0
+offset_top = 32.0
+offset_right = 45.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_s2qme")
+theme_override_font_sizes/font_size = 8
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Counter" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 21.0
+offset_right = 82.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_s2qme")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 81.0
+offset_top = 31.0
+offset_right = 129.0
+offset_bottom = 55.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_s2qme")
+theme_override_font_sizes/font_size = 16
+text = "/20"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,119 @@
+[gd_scene load_steps=24 format=3 uid="uid://cqce3513ri7wb"]
+
+[ext_resource type="Script" path="res://Scripts/side_mailbox.gd" id="1_2kpx3"]
+[ext_resource type="Texture2D" uid="uid://47yjgc5ssiau" path="res://Graphics/Mailbox/Mailboxsprite_side.png" id="2_dy7wc"]
+[ext_resource type="Texture2D" uid="uid://dnqpn4ffxo1wu" path="res://Graphics/Mailbox/pixels_00.png" id="3_2dxgh"]
+[ext_resource type="Texture2D" uid="uid://cwx1tm2ybjgkt" path="res://Graphics/Mailbox/Mailboxsprite.png" id="3_gjwlr"]
+[ext_resource type="Texture2D" uid="uid://bex7jghq57t0k" path="res://Graphics/Mailbox/pixels_01.png" id="4_6trxf"]
+[ext_resource type="Texture2D" uid="uid://bq1kgyfpymuha" path="res://Graphics/Mailbox/pixels_02.png" id="5_u5nq3"]
+[ext_resource type="Texture2D" uid="uid://b2sm7aguii753" path="res://Graphics/Mailbox/pixels_03.png" id="6_g0ff1"]
+[ext_resource type="Texture2D" uid="uid://dfx4kywmcd7p0" path="res://Graphics/Mailbox/pixels_04.png" id="7_cf8j6"]
+[ext_resource type="Texture2D" uid="uid://bd8eqkr8xhwgy" path="res://Graphics/Mailbox/pixels_05.png" id="8_hi5tx"]
+[ext_resource type="Texture2D" uid="uid://040wl35x8ups" path="res://Graphics/Mailbox/pixels_06.png" id="9_inx1b"]
+[ext_resource type="Texture2D" uid="uid://b64y4n6jyv0nu" path="res://Graphics/Mailbox/pixels_07.png" id="10_cgqt7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f802"]
+atlas = ExtResource("2_dy7wc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7my72"]
+atlas = ExtResource("3_gjwlr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83i2l"]
+atlas = ExtResource("3_2dxgh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0opl"]
+atlas = ExtResource("4_6trxf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e58vf"]
+atlas = ExtResource("5_u5nq3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek4hb"]
+atlas = ExtResource("6_g0ff1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yf7p"]
+atlas = ExtResource("7_cf8j6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh73g"]
+atlas = ExtResource("8_hi5tx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crbqq"]
+atlas = ExtResource("9_inx1b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nku2u"]
+atlas = ExtResource("10_cgqt7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wou46"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f802")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7my72")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83i2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0opl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e58vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek4hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yf7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh73g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crbqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nku2u")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"destroy",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebm3v"]
+size = Vector2(21, 29)
+
+[node name="Mailbox" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_2kpx3")
+
+[node name="Motion" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wou46")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ebm3v")
+one_way_collision = true
+one_way_collision_margin = 0.0
